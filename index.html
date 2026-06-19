@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusPlanner</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <script defer src="scripts/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header>
+    <nav>
+      <h1>CampusPlanner</h1>
+      <button class="menu-button" id="menuButton" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <ul id="mainMenu">
+        <li><a class="nav-link" href="#dashboard">Dashboard</a></li>
+        <li><a class="nav-link" href="#tasks">Tasks</a></li>
+        <li><a class="nav-link" href="#add-task">Add Task</a></li>
+        <li><a class="nav-link" href="#settings">Settings</a></li>
+        <li><a class="nav-link" href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <p class="screen-reader-only" id="messageBox" aria-live="polite"></p>
+
+    <section class="hero" id="dashboard">
+      <h2>My Campus Planner</h2>
+      <p>A simple page for keeping track of school tasks, deadlines, and study time.</p>
+    </section>
+
+    <section class="stats-grid" aria-label="Task summary">
+      <article class="stat-card">
+        <h3 id="totalTasks">0</h3>
+        <p>Total tasks</p>
+      </article>
+      <article class="stat-card">
+        <h3 id="pendingTasks">0</h3>
+        <p>Pending</p>
+      </article>
+      <article class="stat-card">
+        <h3 id="completedTasks">0</h3>
+        <p>Completed</p>
+      </article>
+      <article class="stat-card">
+        <h3 id="overdueTasks">0</h3>
+        <p>Overdue</p>
+      </article>
+    </section>
+
+    <p class="notice hidden" id="limitNotice" role="alert"></p>
+
+    <section class="card" id="tasks">
+      <div class="section-title">
+        <h2>My Tasks</h2>
+        <p id="taskCount">No tasks yet.</p>
+      </div>
+
+      <div class="tools">
+        <div>
+          <label for="searchInput">Search with text or regex</label>
+          <input id="searchInput" type="text" placeholder="Example: math|code or ^Read">
+          <small id="searchHelp">Invalid regex will not break the page.</small>
+        </div>
+
+        <div>
+          <label for="sortSelect">Sort tasks</label>
+          <select id="sortSelect">
+            <option value="dateAsc">Due date: earliest first</option>
+            <option value="dateDesc">Due date: latest first</option>
+            <option value="titleAsc">Title: A to Z</option>
+            <option value="durationAsc">Duration: shortest first</option>
+          </select>
+        </div>
+
+        <label class="checkbox-line">
+          <input id="caseCheck" type="checkbox">
+          Case-sensitive search
+        </label>
+      </div>
+
+      <div class="task-list" id="taskList"></div>
+
+      <div class="button-row">
+        <button class="secondary-button" id="exportButton" type="button">Export JSON</button>
+        <label class="secondary-button file-label" for="importFile">Import JSON</label>
+        <input class="screen-reader-only" id="importFile" type="file" accept=".json,application/json">
+        <button class="danger-button" id="clearDoneButton" type="button">Clear completed</button>
+      </div>
+    </section>
+
+    <section class="card" id="add-task">
+      <div class="section-title">
+        <h2 id="formHeading">Add a Task</h2>
+        <p>Fill in the task details. Required fields are marked with *.</p>
+      </div>
+
+      <form id="taskForm" novalidate>
+        <input id="editId" type="hidden">
+
+        <div class="form-group">
+          <label for="titleInput">Task title *</label>
+          <input id="titleInput" type="text" placeholder="Study for web test">
+          <span class="error-text" id="titleError"></span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dateInput">Due date *</label>
+            <input id="dateInput" type="date">
+            <span class="error-text" id="dateError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="durationInput">Minutes *</label>
+            <input id="durationInput" type="number" min="15" max="600" placeholder="60">
+            <span class="error-text" id="durationError"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tagInput">Tag *</label>
+          <input id="tagInput" type="text" placeholder="Study, Coding, Exam">
+          <span class="error-text" id="tagError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="notesInput">Notes</label>
+          <textarea id="notesInput" rows="4" placeholder="Add a short note if needed"></textarea>
+        </div>
+
+        <div class="button-row">
+          <button class="main-button" id="saveButton" type="submit">Save Task</button>
+          <button class="secondary-button" id="cancelEditButton" type="button">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card" id="settings">
+      <div class="section-title">
+        <h2>Settings</h2>
+        <p>Keep the planner simple by setting a task limit.</p>
+      </div>
+
+      <form id="settingsForm">
+        <div class="form-group">
+          <label for="taskLimitInput">Task limit</label>
+          <input id="taskLimitInput" type="number" min="3" max="30" value="12">
+        </div>
+        <button class="main-button" type="submit">Save Settings</button>
+      </form>
+    </section>
+
+    <section class="card" id="about">
+      <div class="section-title">
+        <h2>About This Project</h2>
+      </div>
+      <p>This project uses the same ideas we practiced in class: semantic HTML, Flexbox, Grid, forms, media queries, DOM events, regex, localStorage, and JSON import/export.</p>
+      <p>The design is intentionally simple so it feels like a student-built campus planner, not a complicated template.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>CampusPlanner &copy; 2026</p>
+  </footer>
+</body>
+</html>

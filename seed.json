@@ -1,0 +1,13 @@
+[
+  { "title": "Read JavaScript notes", "dueDate": "2026-06-22", "duration": 45, "tag": "Study", "notes": "Review DOM events.", "completed": false },
+  { "title": "Finish CSS practice", "dueDate": "2026-06-24", "duration": 60, "tag": "Coding", "notes": "Use Flexbox and Grid.", "completed": false },
+  { "title": "Prepare group slides", "dueDate": "2026-06-25", "duration": 90, "tag": "Group", "notes": "Add screenshots.", "completed": false },
+  { "title": "Campus club meeting", "dueDate": "2026-06-26", "duration": 30, "tag": "Club", "notes": "Check room number.", "completed": false },
+  { "title": "Revise HTML forms", "dueDate": "2026-06-27", "duration": 40, "tag": "Study", "notes": "Practice labels and inputs.", "completed": false },
+  { "title": "Submit planner project", "dueDate": "2026-06-30", "duration": 120, "tag": "Project", "notes": "Test before submitting.", "completed": false },
+  { "title": "Watch regex tutorial", "dueDate": "2026-07-01", "duration": 35, "tag": "Coding", "notes": "Try search examples.", "completed": false },
+  { "title": "Update README file", "dueDate": "2026-07-02", "duration": 30, "tag": "Project", "notes": "Add features and test notes.", "completed": false },
+  { "title": "Study for web quiz", "dueDate": "2026-07-03", "duration": 75, "tag": "Exam", "notes": "Focus on localStorage.", "completed": false },
+  { "title": "Clean task list", "dueDate": "2026-07-04", "duration": 20, "tag": "Admin", "notes": "Delete old tasks.", "completed": false },
+  { "title": "Deploy to GitHub Pages", "dueDate": "2026-07-05", "duration": 50, "tag": "Project", "notes": "Add live link.", "completed": false }
+]

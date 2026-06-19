@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusPlanner Tests</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <h1>CampusPlanner Tests</h1>
+      <ul>
+        <li><a href="index.html">Back to app</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Simple Test Page</h2>
+      <p>This page checks the main regex and helper ideas used in the project.</p>
+    </section>
+
+    <section class="card">
+      <h2>Test Results</h2>
+      <div id="testResults"></div>
+    </section>
+  </main>
+
+  <script>
+    const results = document.getElementById("testResults");
+
+    function showTest(name, passed) {
+      const line = document.createElement("p");
+      line.textContent = `${passed ? "PASS" : "FAIL"}: ${name}`;
+      line.style.fontWeight = "bold";
+      results.appendChild(line);
+    }
+
+    const titlePattern = /^[a-zA-Z0-9 .,!?'-]{3,60}$/;
+    const repeatedWordPattern = /\b(\w+)\s+\1\b/i;
+    const tagPattern = /^[a-zA-Z]+(?:[- ]?[a-zA-Z]+){0,2}$/;
+    const numberPattern = /^\d+$/;
+
+    showTest("Valid title is accepted", titlePattern.test("Study for web test"));
+    showTest("Short title is rejected", !titlePattern.test("Hi"));
+    showTest("Repeated words are found", repeatedWordPattern.test("study study tonight"));
+    showTest("Valid tag is accepted", tagPattern.test("Web Dev"));
+    showTest("Invalid tag with numbers is rejected", !tagPattern.test("Web123"));
+    showTest("Duration number is accepted", numberPattern.test("60"));
+
+    try {
+      new RegExp("study|coding", "i");
+      showTest("Valid regex search compiles", true);
+    } catch (error) {
+      showTest("Valid regex search compiles", false);
+    }
+
+    try {
+      new RegExp("[");
+      showTest("Invalid regex is caught", false);
+    } catch (error) {
+      showTest("Invalid regex is caught", true);
+    }
+  </script>
+</body>
+</html>
