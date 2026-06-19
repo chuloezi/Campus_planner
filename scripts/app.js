@@ -228,11 +228,19 @@ class CampusPlanner {
     return errors;
   }
 
-  isRealDate(dateText) {
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateText)) return false;
-    const date = new Date(dateText + "T00:00:00");
-    return date instanceof Date && !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === dateText;
-  }
+ isRealDate(dateText) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateText)) return false;
+
+  const parts = dateText.split("-").map(Number);
+  const year = parts[0];
+  const month = parts[1];
+  const day = parts[2];
+  const date = new Date(year, month - 1, day);
+
+  return date.getFullYear() === year &&
+    date.getMonth() === month - 1 &&
+    date.getDate() === day;
+}
 
   showErrors(errors) {
     this.setError("title", errors.title);
