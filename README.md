@@ -1,89 +1,263 @@
-# CampusPlanner
+# Campus Planner
 
-CampusPlanner is a simple one-page web app for organizing school tasks. It was built with beginner-friendly HTML, CSS, and JavaScript.
+Campus Planner is a simple one-page web app for organizing student tasks, study plans, and campus activities. It was built with HTML, CSS, and JavaScript.
 
-## How to run
+## GitHub Pages link
 
-Use VS Code Live Server, or run this command in the project folder:
+You can find the live GithHub pages link here : https://chuloezi.github.io/Campus_planner/ 
 
-```bash
+## Project Overview
+
+This app helps a student keep track of important campus tasks. A user can add a task, set a due date, choose a category, enter an estimated duration, mark tasks as complete, edit tasks, delete tasks, search tasks, sort tasks, and save their data in the browser.
+
+## Setup Guide
+
+Open the project folder in a terminal and run:
+
 python -m http.server 5500
-```
 
 Then open:
 
-```text
 http://localhost:5500
-```
 
-Opening the file directly with `file://` may cause browser security issues, so Live Server is better.
+## Features List
 
-## Main features
+### Task Management
 
-- Add, edit, delete, and complete tasks
-- Search tasks with normal text or regex patterns
-- Sort tasks by due date, title, or duration
-- Save tasks with localStorage
-- Import and export JSON
-- Show task stats: total, pending, completed, and overdue
-- Simple task limit setting
-- One-page navigation using section links
+- Add new tasks.
+- Edit existing tasks.
+- Delete tasks.
+- Mark tasks as complete or pending.
+- Display task information clearly in cards.
 
-## Class concepts used
+### Dashboard
 
-This project uses the same class concepts we practiced:
+- Shows total tasks.
+- Shows pending tasks.
+- Shows completed tasks.
+- Shows overdue tasks.
 
-- Semantic HTML: `header`, `nav`, `main`, `section`, `article`, `footer`
-- Flexbox for navigation and button rows
-- CSS Grid for the dashboard cards and forms
-- Media queries for smaller screens
-- Form validation with regex
-- DOM events with JavaScript
-- localStorage for saving browser data
-- JSON import and export
-- Basic OOP with `Task` and `CampusPlanner` classes
-- Keyboard support with Tab, Escape, and arrow keys in the nav
+### Search and Sort
 
-## Regex examples
+- Search tasks by title, category, or notes.
+- Supports regex search.
+- Handles invalid regex without crashing the app.
+- Sort tasks by title, due date, or duration.
 
-The project uses regex for:
+### Storage
 
-- Task title validation
-- Duplicate word checking, for example `study study`
-- Date format checking
-- Number checking for duration
-- Tag validation
-- Live task search
+- Saves tasks using `localStorage`.
+- Keeps tasks after the page is refreshed.
+- Saves user settings where needed.
 
-## Keyboard map
+### JSON Import and Export
+
+- Export tasks as a JSON file.
+- Import tasks from a JSON file.
+- Includes a `seed.json` file with sample records for testing.
+
+## Regex Catalog
+
+This project uses regular expressions for validation and search.
+
+### Title Validation
+
+It makes sure the task title is not empty and contains normal readable text.
+
+Example pattern:
+
+/^[A-Za-z0-9 ]{3,60}$/
+
+What it checks:
+
+- Allows letters.
+- Allows numbers.
+- Allows spaces.
+- Requires a reasonable length.
+
+Example valid titles:
+
+Math homework
+Read chapter 4
+Group meeting
+
+Example invalid titles:
+
+!!
+A
+
+### Date Validation
+
+It makes sure the due date uses the correct date format.
+
+Example pattern:
+
+/^\d{4}-\d{2}-\d{2}$/
+
+What it checks:
+
+- Four digits for year.
+- Two digits for month.
+- Two digits for day.
+- Uses the format "YYYY-MM-DD".
+
+Example valid date:
+
+2026-06-20
+
+Example invalid date:
+
+20/06/2026
+
+### Duration Validation
+
+It makes sure the estimated task duration is a number.
+
+Example pattern:
+
+/^\d+$/
+
+What it checks:
+
+- Allows digits only.
+- Prevents letters and symbols.
+
+Example valid duration:
+
+45
+
+Example invalid duration:
+
+forty
+
+### Tag or Category Validation
+
+It makes sure a category or tag uses simple, readable words.
+
+Example pattern:
+
+/^[A-Za-z ]{2,30}$/
+
+What it checks:
+
+- Allows letters.
+- Allows spaces.
+- Keeps the category short and readable.
+
+Example valid categories:
+
+Study
+Personal
+Campus Event
+
+Example invalid categories:
+
+@@@
+1
+
+### Duplicate Word Check
+
+It also catches repeated words in a task title or note.
+
+Example pattern:
+
+/\b(\w+)\s+\1\b/i
+
+What it checks:
+
+- Finds the same word repeated twice.
+- The "i" flag makes it case-insensitive.
+
+Example invalid text:
+
+meeting meeting
+
+### Regex Search
+
+It allows the user to search tasks with normal text or regex patterns.
+
+Example searches:
+
+exam
+study|meeting
+^read
+
+Error handling is included so that an invalid regex does not break the page.
+
+## Keyboard Map
 
 - `Tab`: move through links, inputs, and buttons
 - `ArrowLeft` / `ArrowRight`: move between navigation links when a nav link is focused
 - `Escape`: cancel editing a task
 - `Enter`: submit forms or activate buttons
 
-## Accessibility notes
+## Accessibility Notes
 
-- Every input has a label
-- The page has a skip link
-- Focus styles are visible
-- Status messages use `aria-live`
-- Buttons use real button elements
-- Navigation links move to sections on the same page
+This project includes accessibility improvements so it can be used more easily by different users.
 
-## Testing checklist
+### Semantic HTML
 
-Before submitting, test these:
+The page uses meaningful HTML elements such as:
 
-1. Add a valid task
-2. Try invalid form values
-3. Edit a task
-4. Mark a task as done
-5. Delete a task
-6. Search using a regex like `study|coding`
-7. Try an invalid regex like `[`
-8. Export JSON
-9. Import `seed.json`
-10. Refresh the page and check that tasks stay saved
-11. Use the keyboard only
-12. Resize the browser to check mobile layout
+header
+nav
+main
+section
+article
+footer
+form
+label
+button
+
+These help screen readers and browsers understand the page structure.
+
+### Labels
+
+Form inputs use labels so users know what each input is for.
+
+### Keyboard Support
+
+The main actions can be reached with the keyboard. Users can move through the page using "Tab", activate buttons with "Enter", and move through navigation links with arrow keys.
+
+### Focus Styles
+
+Interactive elements have visible focus styles so keyboard users can see where they are on the page.
+
+### Error Messages
+
+Validation errors are shown clearly when the user enters incorrect information.
+
+### ARIA Live Messages
+
+Status messages are announced when tasks are added, updated, deleted, imported, or exported.
+
+### Color Contrast
+
+The design uses dark blue text on light backgrounds to keep the page readable.
+
+## Testing Instructions
+
+### Manual Testing Checklist
+
+Use this checklist before submission:
+
+- Add a new task.
+- Try submitting an empty form and check for an error.
+- Add a task with a valid title, date, category, and duration.
+- Mark a task as complete.
+- Edit a task.
+- Delete a task.
+- Refresh the page and check that saved tasks remain.
+- Search for a task using normal text.
+- Search using a regex pattern.
+- Enter an invalid regex and check that the app does not crash.
+- Sort tasks by title.
+- Sort tasks by due date.
+- Sort tasks by duration.
+- Export tasks as JSON.
+- Import tasks from `seed.json`.
+- Test the page on a small screen.
+- Use the keyboard to move through the app.
+
+
+
