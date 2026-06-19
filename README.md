@@ -6,6 +6,10 @@ Campus Planner is a simple one-page web app for organizing student tasks, study 
 
 You can find the live GithHub pages link here : https://chuloezi.github.io/Campus_planner/ 
 
+## DEMO video Link
+
+https://www.loom.com/share/ceffa4f9853846a688c0b256511f2320
+
 ## Project Overview
 
 This app helps a student keep track of important campus tasks. A user can add a task, set a due date, choose a category, enter an estimated duration, mark tasks as complete, edit tasks, delete tasks, search tasks, sort tasks, and save their data in the browser.
